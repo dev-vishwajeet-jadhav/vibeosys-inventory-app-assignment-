@@ -1,8 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { deleteProduct } from '../features/products/productsSlice';
 
 function ProductListPage() {
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
 
   const calculateTotalCost = (product) => {
@@ -30,42 +32,75 @@ function ProductListPage() {
         Overview of finished, semi finished and subsidiary products with their raw
         material costs.
       </p>
-      <div className="card table-wrapper">
-        <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Category of Product</th>
-            <th>Total Cost of Product</th>
-            <th>Number of Raw Materials</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
-             
-              <td>{product.category}</td>
-              <td>{calculateTotalCost(product)}</td>
-              <td>{product.materials ? product.materials.length : 0}</td>
-              <td>
-                <Link
-                  className="btn btn--primary"
-                  to={`/products/${product.id}/edit`}
-                >
-                  Edit
-                </Link>
-              </td>
-            </tr>
-          ))}
-          {products.length === 0 && (
+      {products.length === 0 ? (
+        <div className="card">
+          <p style={{ marginBottom: '0.75rem' }}>
+            No products have been added yet. Start by creating your first product and
+            defining its raw materials.
+          </p>
+          <div className="page-actions">
+            <Link to="/products/new" className="btn btn--primary">
+              Add First Product
+            </Link>
+          </div>
+        </div>
+      ) : (
+        <div className="card table-wrapper">
+          <table>
+          <thead>
             <tr>
-              <td colSpan="5">No products added yet.</td>
+              <th>Name</th>
+              <th>Category of Product</th>
+              <th>Total Cost of Product</th>
+              <th>Number of Raw Materials</th>
+              <th>Edit</th>
+              <th>Remove</th>
             </tr>
-          )}
-        </tbody>
-        </table>
-      </div>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr key={product.id}>
+                <td>
+                  <Link
+                    className="link-inline"
+                    to={`/products/${product.id}/edit`}
+                  >
+                    {product.name}
+                  </Link>
+                </td>
+                <td>{product.category}</td>
+                <td>{calculateTotalCost(product)}</td>
+                <td>{product.materials ? product.materials.length : 0}</td>
+                <td>
+                  <Link
+                    className="btn btn--primary"
+                    to={`/products/${product.id}/edit`}
+                  >
+                    Edit
+                  </Link>
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    className="btn btn--danger"
+                    onClick={() => {
+                      const confirmed = window.confirm(
+                        'Are you sure you want to remove this product?',
+                      );
+                      if (confirmed) {
+                        dispatch(deleteProduct(product.id));
+                      }
+                    }}
+                  >
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
