@@ -1,38 +1,225 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  background-color: #f4f5f7;
+  color: #1f2933;
+}
+
+.app-header {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  background-color: #111827;
+  color: #f9fafb;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.5);
+}
+
+.app-header__brand {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.app-nav {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.app-nav__link {
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #e5e7eb;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.app-nav__link:hover {
+  background-color: #1f2937;
+  border-color: #4b5563;
+}
+
+.app-nav__link--primary {
+  background-color: #2563eb;
+  border-color: #1d4ed8;
+  color: #f9fafb;
+}
+
+.app-nav__link--primary:hover {
+  background-color: #1d4ed8;
+}
+
+.app-main {
+  padding: 1.5rem;
+}
+
+.app-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page {
+  text-align: left;
+}
+
+.page__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.page__subtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
+}
+
+.card + .card {
+  margin-top: 1rem;
+}
+
+.btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.35rem;
+  border: 1px solid transparent;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #e5e7eb;
+  color: #111827;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.btn:hover {
+  background-color: #d1d5db;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn--primary {
+  background-color: #2563eb;
+  border-color: #1d4ed8;
+  color: #f9fafb;
+}
+
+.btn--primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn--danger {
+  background-color: #dc2626;
+  border-color: #b91c1c;
+  color: #fef2f2;
+}
+
+.btn--danger:hover {
+  background-color: #b91c1c;
+}
+
+.btn + .btn {
+  margin-left: 0.5rem;
+}
+
+.table-wrapper {
+  margin-top: 0.75rem;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  padding: 0.55rem 0.6rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+thead th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+form {
+  margin-top: 0.75rem;
+}
+
+fieldset {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 0.9rem 1rem 1.1rem;
+  margin-bottom: 1rem;
+}
+
+legend {
+  padding: 0 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+label {
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+input[type='text'],
+input[type='number'],
+input[type='date'],
+select {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.35rem 0.45rem;
+  border-radius: 0.35rem;
+  border: 1px solid #d1d5db;
+  font-size: 0.9rem;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb33;
+}
+
+.error-text {
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  color: #b91c1c;
+}
+
+.link-inline {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.link-inline:hover {
+  text-decoration: underline;
+}
+
+.page-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
 }
