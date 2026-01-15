@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/vibeosys-inventory-app-assignment-/static/css/main.4c93f896.css",
+    "main.js": "/vibeosys-inventory-app-assignment-/static/js/main.64e56ecf.js",
+    "static/js/453.56a7587c.chunk.js": "/vibeosys-inventory-app-assignment-/static/js/453.56a7587c.chunk.js",
+    "index.html": "/vibeosys-inventory-app-assignment-/index.html",
+    "main.4c93f896.css.map": "/vibeosys-inventory-app-assignment-/static/css/main.4c93f896.css.map",
+    "main.64e56ecf.js.map": "/vibeosys-inventory-app-assignment-/static/js/main.64e56ecf.js.map",
+    "453.56a7587c.chunk.js.map": "/vibeosys-inventory-app-assignment-/static/js/453.56a7587c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4c93f896.css",
+    "static/js/main.64e56ecf.js"
+  ]
+}
