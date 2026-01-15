@@ -300,8 +300,8 @@ function EditProductPage() {
                     <td>
                       <input
                         type="number"
-                        min="0"
-                        step="0.01"
+                        min="1"
+                        step="1"
                         value={material.quantity}
                         onChange={(e) =>
                           handleMaterialChange(index, 'quantity', e.target.value)
@@ -311,8 +311,8 @@ function EditProductPage() {
                     <td>
                       <input
                         type="number"
-                        min="0"
-                        step="0.01"
+                        min="1"
+                        step="1"
                         value={material.price}
                         onChange={(e) =>
                           handleMaterialChange(index, 'price', e.target.value)

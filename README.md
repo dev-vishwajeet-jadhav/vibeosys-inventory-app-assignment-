@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# Inventory Management SPA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Single Page Application to manage manufacturing product inventory for a Pune unit.
 
-## Available Scripts
+The app allows you to:
 
-In the project directory, you can run:
+- List products with category, total material cost and number of raw materials.
+- Add new products with full details and dynamic raw material cost calculations.
+- Edit existing products and their materials.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technology Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React
+- Redux Toolkit + React Redux
+- React Router
 
-### `npm test`
+No backend server is required. All data is stored in browser storage and managed in-memory.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## How to Run the Application
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Install dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   npm install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Start the development server:
 
-### `npm run eject`
+   ```bash
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Open the app in your browser:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   - URL: http://localhost:3000/
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Features vs Assignment Requirements
 
-## Learn More
+### Product
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Each product stores:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Name of product
+- Unit of measure (ml / ltr / gm / kg / mtr / mm / box / units)
+- Category (Finished / Semi finished / Subsidiary)
+- Expiry date (must be a future date)
+- Total cost of product (sum of raw material total amounts)
+- List of raw materials
 
-### Code Splitting
+### Raw Material
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+For each raw material the app tracks:
 
-### Analyzing the Bundle Size
+- Material ID
+- Name of material
+- Unit of measure (same options as product)
+- Quantity
+- Unit price
+- Total price (Quantity × Unit price)
+- Tax amount (10% of total price)
+- Total amount (total price + tax amount)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Pages
 
-### Making a Progressive Web App
+1. **Product List Page**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   - Shows all products in a table with:
+     - Name (clickable link to edit page)
+     - Category of product
+     - Total cost of product (total material cost)
+     - Number of raw materials
+     - Separate **Edit** button
 
-### Advanced Configuration
+2. **Add Product Page**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+   - Form to enter all product fields.
+   - Section to add one or more raw materials.
+   - Quantity and price updates automatically recalculate:
+     - Total price
+     - Tax amount @ 10%
+     - Total amount
+   - Displays product subtotal (sum of all raw material total amounts).
+   - On save, product is added to the list.
 
-### Deployment
+3. **Edit Product Page**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+   - Loads an existing product by ID.
+   - Pre-fills product and raw material fields.
+   - Allows full editing with the same calculations and validations as the Add page.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Data Persistence
+
+- Product data is stored in Redux state.
+- State is automatically saved to `localStorage` so that products remain after a page refresh.
+
+---
+
+## Build for Production
+
+To create an optimized production build:
+
+```bash
+npm run build
+```
+
+This generates a static build in the `build` folder which can be hosted on any static file server.
+

@@ -20,6 +20,9 @@ function ProductListPage() {
     }, 0);
   };
 
+
+  
+
   return (
     <div className="page">
       <h1 className="page__title">Product Inventory</h1>
@@ -35,27 +38,29 @@ function ProductListPage() {
             <th>Category of Product</th>
             <th>Total Cost of Product</th>
             <th>Number of Raw Materials</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>
           {products.map((product) => (
             <tr key={product.id}>
-              <td>
-                <Link
-                  className="link-inline"
-                  to={`/products/${product.id}/edit`}
-                >
-                  {product.name}
-                </Link>
-              </td>
+             
               <td>{product.category}</td>
               <td>{calculateTotalCost(product)}</td>
               <td>{product.materials ? product.materials.length : 0}</td>
+              <td>
+                <Link
+                  className="btn btn--primary"
+                  to={`/products/${product.id}/edit`}
+                >
+                  Edit
+                </Link>
+              </td>
             </tr>
           ))}
           {products.length === 0 && (
             <tr>
-              <td colSpan="4">No products added yet.</td>
+              <td colSpan="5">No products added yet.</td>
             </tr>
           )}
         </tbody>
