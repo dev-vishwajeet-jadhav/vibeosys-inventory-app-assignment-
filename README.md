@@ -8,7 +8,7 @@ The app allows you to:
 - Add new products with full details and dynamic raw material cost calculations.
 - Edit existing products and their materials.
 
----
+Live Project Link - https://dev-vishwajeet-jadhav.github.io/vibeosys-inventory-app-assignment-/
 
 ## Technology Stack
 
